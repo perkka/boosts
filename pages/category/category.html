@@ -1,0 +1,20 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{categoryName}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+
+<ion-content >
+
+       <ion-item  *ngFor="let coach of coaches" item-width="50%" (click)="_coach([coach])">
+          <span item-left><img class="coach_pic" src="{{coach.Img}}"></span>
+          <span item-left><div  class="card-title">{{coach.Name}}</div></span>
+      </ion-item>
+
+</ion-content>

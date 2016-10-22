@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Workoutprofile
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="workoutprofile">
+         <ion-row *ngFor="let coach of pickedCoaches">
+            <ion-col width-33>
+              <ion-card class="backgound-for-categorys">
+                        
+                        <img src='{{coach.Img}}'>
+              </ion-card>
+            </ion-col>
+            <ion-col width-66>
+              <ion-card class="name-back">
+                        <h2 class="name" >{{weekInfo.Description}}</h2>
+                        
+              </ion-card>
+            </ion-col>
+            
+        </ion-row>
+              
+
+       
+
+        <ion-card  class="back-img" *ngFor="let wrk of wrkWeek" (click)="_descWorkout([wrk])">
+
+              <div class="card-title"> {{wrk.Name}}</div>
+              
+          </ion-card>
+         
+</ion-content>

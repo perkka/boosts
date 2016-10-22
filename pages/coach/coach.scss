@@ -1,0 +1,102 @@
+.coach {
+  
+  .back{
+
+    background-size: 100%;
+    height: 200px;
+
+      .profile_pic{
+        position: absolute;
+        left: 15%;
+        top: 5%;
+        width: 75px;
+        height: 75px;
+        border-radius: 150px;
+        -webkit-border-radius: 150px;
+        -moz-border-radius: 150px;
+        box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+        -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+        -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+      }
+
+
+      .follow-button-pos{
+        position: absolute;
+        left: -5%;
+        top: 18%;
+      }
+
+      // Following button, be catious
+      /* Chrome, Safari, Opera */
+              @-webkit-keyframes follow-animation {
+                from {background: white; color: #3399FF; width: 85px; left: 50px;}
+                to {background: #2EB82E; border-color: #2EB82E; color: #ffffff; width: 120px; left: 35px;}
+              }
+              @-webkit-keyframes unfollow-animation {
+                from {background: #2EB82E; color: #ffffff; width: 120px; left: 35px;}
+                to {background: white; border-color: #3399FF; color: #3399FF; width: 85px; left: 50px;}
+              }
+
+              /* Standard syntax */
+              @keyframes follow-animation {
+                from {background: white; color: #3399FF; width: 85px; left: 50px;}
+                to {background: #2EB82E; border-color: #2EB82E; color: #ffffff; width: 120px; left: 35px;}
+              }
+              @keyframes unfollow-animation {
+                from {background: #2EB82E; color: #ffffff; width: 120px; left: 35px;}
+                to {background: white; border-color: #3399FF; color: #3399FF; width: 85px; left: 50px;}
+              }
+
+              input {
+                -webkit-appearance: none;
+              }
+
+              input:after {
+                color: #3399FF;
+                font-family: "Helvetica";
+                font-size: 10pt;
+                background-color: #ffffff;
+                border: 1px solid;
+                border-color: #3399FF;
+                border-radius: 3px;
+                position: absolute;
+                top: 50px;
+                left: 50px;	
+                cursor: hand;
+                display: inline-block;
+                text-align: center;
+                padding: 5px 15px;
+
+
+                content: '+ Follow';
+                -webkit-animation: unfollow-animation 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                -webkit-animation-fill-mode:forwards;
+                animation: unfollow-animation 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                animation-fill-mode:forwards;
+              }
+
+              input:checked:after {
+                content: 'Following';
+                -webkit-animation: follow-animation 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                -webkit-animation-fill-mode:forwards;
+                animation: follow-animation 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                animation-fill-mode:forwards;
+              }	
+
+
+  }
+
+
+
+  .description{
+        background-color: #E6E6E6;
+  }
+
+  .workouts{
+        background-color: #E6E6E6;
+  }
+  
+
+
+
+}

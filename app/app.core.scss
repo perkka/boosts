@@ -1,0 +1,106 @@
+// http://ionicframework.com/docs/v2/theming/
+
+
+// App Shared Imports
+// --------------------------------------------------
+// These are the imports which make up the design of this app.
+// By default each design mode includes these shared imports.
+// App Shared Sass variables belong in app.variables.scss.
+
+@import "../pages/about/about";
+
+@import "../pages/workout/workout";
+
+@import "../pages/home/home";
+
+@import "../pages/explore/explore";
+
+@import "../pages/profile/profile";
+
+@import "../pages/toplist/toplist";
+
+@import "../pages/newcoaches/newcoaches";
+
+@import "../pages/popular/popular";
+
+@import "../pages/coach/coach";
+
+@import "../pages/training/training";
+
+@import "../pages/workout/workout";
+
+@import "../pages/workoutprofile/workoutprofile";
+
+@import "../pages/search/search";
+
+//@import "../pages/tabs/tabs";
+
+
+
+
+// Hide Scrollbar
+::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none;
+}
+
+body{
+  color: black;
+}
+
+ion-tabbar{
+  background-color: #333;
+
+}
+
+
+// 1dbaa5
+
+.toolbar-title{
+  color: white;
+}
+
+// TRANSPARENT COLOR FOR ION-OBJECTS
+.toolbar-background{
+  opacity: 0;
+}
+
+ion-item{
+  color: #E6E6E6;
+  background-color: transparent;
+  
+}
+
+ion-scroll{
+  background-color: transparent;
+}
+
+//----------------------------------------
+
+
+ion-content{
+  background-image: url(http://www.nexus5wallpapers.com/wp-content/uploads/Background/Simple%20Background%20Nexus%205%20Wallpapers%20HD%2054.jpg);
+  background-repeat: none;
+  background-size: 125%;
+}
+
+
+.header-md{
+  opacity: 0.5;
+  z-index: -100;
+}
+ion-header{
+ 
+ 
+background: rgba(255,000,255,0.8) ;
+}
+
+
+ion-navbar{
+
+}
+
+
+
+
+

@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{name}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="coach">
+  
+  <div class="back" style="background-image: url(https://annalindberg.se/wp-content/uploads/2016/03/Anna_Lindberg_FB-image.jpg);">
+     <img class="profile_pic" src="https://annalindberg.se/wp-content/uploads/2016/03/Anna-Lindberg-Nojesnytt-1.jpg">
+     <input type="checkbox" class="follow-button-pos" id="myCheck" />
+     <!--
+     <img class="profile_pic" src={{coverImg}}>
+     -->
+  </div>
+
+  <div class="description">
+    <h5>Description</h5>
+    <p>{{description}}</p>
+  </div>
+
+  <div class="workouts">
+    <h5>Träningsprogram</h5>
+    <button (click)="check()">Check Checkbox</button>
+    <button (click)="uncheck()">Uncheck Checkbox</button>
+  </div>
+
+<!--
+      <ion-card  *ngFor="let workout of workouts" item-width="50%">
+          <div  class="card-title">{{workout.training}}</div>
+      </ion-card>
+-->    
+
+  
+</ion-content>
+<!--
+<h2>{{name}}</h2>
+<h3>{{description}}</h3>
+-->

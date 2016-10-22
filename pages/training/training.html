@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title *ngIf="isTrainingStarted()">
+      {{zero3}}{{h}}:{{zero2}}{{min}}:{{zero1}}{{sec}}
+    </ion-title>
+    <ion-title *ngIf="isTrainingStarted() == false">
+      Training
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="training">
+
+
+  <div class="exSquare">
+         <ion-card>
+                  <ion-grid>
+                    <ion-row>
+                       <ion-col width-50>
+                          {{currentExercise.Name}}
+                       </ion-col>
+        
+                       <ion-col width-50>
+                           eddf
+                       </ion-col>
+
+                    </ion-row>
+                    <ion-row>
+                      <ion-col>
+                        {{currentExercise.Description}}
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+</ion-card>
+
+  <video controls="controls" loop width="380" preload="metadata" autoplay="autoplay" webkit-playsinline="webkit-playsinline" class="videoPlayer"><source src="http://192.168.1.2:4000/video/stream?filename=uploads/exercise1/b0f88f8d8abe868c1557f239792e5162&format=video/vnd.dlna.mpeg-tts" type="video/vdn.dlna.mpeg-tts"/></video>
+  </div>
+  
+<ion-list>
+         <ion-item class="orginal" *ngFor="let ex of exercises; let i=index" (click)="nextExer(i)">
+              
+                
+                <ion-label>{{ex.Name}}</ion-label>
+                  <ion-label>{{ex.reps}}</ion-label>
+
+          </ion-item>
+
+</ion-list>     
+
+
+<ion-fab class="start" bottom center>
+   <button ion-fab (click)="startTraining()"><ion-icon name="play"></ion-icon></button>
+ </ion-fab>
+
+
+ <ion-fab bottom right class="inTraining" #fab>
+  <button ion-fab><ion-icon name="git-network"></ion-icon></button>
+  <ion-fab-list side="top">
+
+ <button color="danger" ion-fab (click)="pauseTraining(fab)"><ion-icon name="pause"></ion-icon></button>
+
+  </ion-fab-list>
+  <ion-fab-list side="left">
+   
+
+   <button color="danger" ion-fab (click)="stopTraining()"><ion-icon name="square"></ion-icon></button>
+    
+  </ion-fab-list>
+</ion-fab>
+
+<ion-fab class="next" bottom center>
+  <button ion-fab color="primary" (click)="next()"><ion-icon name="arrow-round-forward"></ion-icon></button>
+</ion-fab>
+
+<ion-fab class="done" bottom center>
+  <button ion-fab color="primary" (click)="done()">DONE</button>
+</ion-fab>
+
+
+
+</ion-content>

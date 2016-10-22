@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title *ngIf="position < 100 ">
+        eeeee
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+
+
+<ion-content class="profile">
+
+
+
+
+
+  <div *ngFor="let user of AllUsers" class="back">
+        <img class="top_pic">
+        <!-- Profile picture -->
+        <img class="profile_pic" src="{{user.ProfileImg}}">
+        <h2 class="name">{{user.Name}}</h2>
+  </div>
+
+
+  <div class="color">
+    <h5>My Coach</h5>
+        <div *ngFor="let coach of Coaches">     
+          <ion-item>
+            <span item-left><img class="coach_pic" src="{{coach.Img}}"></span>
+            <span item-left>{{coach.Name}}</span>
+          </ion-item>
+        </div>
+  </div>
+
+  <div class="color">
+    <h5>Recently Trainings</h5>
+        <ion-list no-lines *ngFor="let coach of Coaches">     
+          <ion-card><ion-item>Training 1</ion-item></ion-card>
+          <ion-card><ion-item>Training 2</ion-item></ion-card>
+          <ion-card><ion-item>Training 3</ion-item></ion-card>
+          <ion-card><ion-item>Training 4</ion-item></ion-card>
+          <ion-card><ion-item>Training 5</ion-item></ion-card>
+          <ion-card><ion-item>Training 1</ion-item></ion-card>
+          <ion-card><ion-item>Training 2</ion-item></ion-card>
+          <ion-card><ion-item>Training 3</ion-item></ion-card>
+          <ion-card><ion-item>Training 4</ion-item></ion-card>
+          <ion-card><ion-item>Training 5</ion-item></ion-card>
+          <ion-card><ion-item>Training 1</ion-item></ion-card>
+          <ion-card><ion-item>Training 2</ion-item></ion-card>
+          <ion-card><ion-item>Training 3</ion-item></ion-card>
+          <ion-card><ion-item>Training 4</ion-item></ion-card>
+          <ion-card><ion-item>Training 5</ion-item></ion-card>
+        </ion-list>
+  </div>
+
+
+ 
+
+
+
+
+    
+
+</ion-content>

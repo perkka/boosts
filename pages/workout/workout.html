@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Workout
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="workout">
+
+
+<ion-card>
+  <ion-item>
+    <ion-icon name="information-circle"> Information</ion-icon>
+  </ion-item>
+
+  <ion-item>
+    Name: {{work.Name}}
+  </ion-item>
+
+    <ion-item>
+    Description: {{work.Description}}
+  </ion-item>
+
+</ion-card>
+
+<button class="begin" ion-button fab (click)="_Training()">Click to begin</button>
+         
+</ion-content>
