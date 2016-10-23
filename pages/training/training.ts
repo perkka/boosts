@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation} from '@angular/core';
-import {NavController, NavParams, ViewController} from 'ionic-angular';
+import {NavController, NavParams, ViewController, ToastController} from 'ionic-angular';
 import {AlertController} from 'ionic-angular';
 import {Global} from '../../global/global';
 import {Request} from '../../services/request';
@@ -16,8 +16,8 @@ export class TrainingPage {
 
   public time: any = 2000;
   public trainingHasStarted: boolean = false;
+  public trainingHasPaused: boolean = false;
   public nr: any = 0;
-  public check: boolean = true;
   public theTimer: any;
   public sec: any = 0;
   public min: any = 0;
@@ -25,16 +25,22 @@ export class TrainingPage {
   public zero1: string = "0";
   public zero2: string = "0";
   public zero3: string = "0";
+  public tbe: number;
+
 
   public exercises = [];
-  public currentExercise = {Name: "Excersise", Description:"Description"};
+  public currentExercise = {Name: "Excersise", Description: "Description", reps: "Reps", sort: "undefined"};
 
   constructor(private navCtrl: NavController, params:NavParams, private request: Request, 
-              global: Global, public alertCtrl: AlertController, private viewCtrl: ViewController) {
+              global: Global, public alertCtrl: AlertController, private viewCtrl: ViewController,
+              private toastCtrl: ToastController) {
 
       
-
+      this.tbe = params.get("TimeBetweenExcercise")
       let workout = params.get("Workout")
+
+      // Consol-log time between ex
+      console.log(this.tbe);
 
 
       let ExerciseArray = [];
@@ -44,32 +50,38 @@ export class TrainingPage {
 
         let exObj = JSON.parse(workout.Exercises[exercise]);
         exObjArray.push(exObj)
-        // TODO: Remove substring when fixed space problem in database/admin
-        if(exObj.id != null) ExerciseArray.push(exObj.id.substring(0, exObj.id.length - 1)); 
+
+        if(exObj.id != null) ExerciseArray.push(exObj.id); 
        
-        }
+      }
+
         
       this.request.getWrkExercises(ExerciseArray).subscribe(
             data => this.setExercises(data, exObjArray)
       );
+
   }
+ 
 
 
 
+
+
+ 
   startTraining(){
 
     // start training boolean
     this.trainingHasStarted = true;
 
-    let start = document.querySelector(".start");
-    let inTraining = document.querySelector(".inTraining");
-
     // so we can't go back in a traing session
     this.viewCtrl.showBackButton(false);
     // hide and show fab buttons
-    start["style"].display = "none";
-    inTraining["style"].display = "flex";
+    this.showInTraining();
+    this.hideStartTraining();
+
+    
     setTimeout( () => this.showNext() , this.time);
+    
     
     // start timer
     this.startTimer();
@@ -77,19 +89,8 @@ export class TrainingPage {
     // start all excersises
     this.nr = 0;
     this.nextExerInTraining(this.nr);
-
   }
 
-
-  inTraining(){
-
-    let stop = document.querySelector(".stop");
-    let pause = document.querySelector(".pause");
-
-    stop["style"].display = "flex";
-    pause["style"].display = "flex";
-
-  }
 
 
   stopTraining(){
@@ -105,12 +106,12 @@ export class TrainingPage {
     fab.close();
     clearTimeout(this.theTimer);
 
-    // Fab buttons
-    let start = document.querySelector(".start");
-    start["style"].display = "flex";
+    // Fab buttons change state
+    this.showStartTraining();
+    this.hideInTraining();
 
-    let inTraining = document.querySelector(".inTraining");
-    inTraining["style"].display = "none";
+    this.trainingHasPaused = true;
+
     // Pause training boolean
     this.trainingHasStarted = false;
     
@@ -125,18 +126,18 @@ export class TrainingPage {
       cssClass: 'myAlert',
       buttons: [
         {
-          text: 'Disagree',
+          text: 'No',
           handler: () => {
-            //console.log('Disagree clicked');
+            //console.log('No clicked');
 
 
             
           }
         },
         {
-          text: 'Agree',
+          text: 'Yes',
           handler: () => {
-            //console.log('Agree clicked');
+            //console.log('Yes clicked');
             //console.log(this.navCtrl.canGoBack());
             
             this._workoutprofile();
@@ -180,10 +181,25 @@ ionViewWillEnter() {
   setExercises(data, workout){
 
     let exercisesObject = this.extend(data, workout);
-    console.log(exercisesObject);
-    this.exercises = exercisesObject;
 
+    // Check sort
+    this.checkSort(exercisesObject);
+
+    this.exercises = exercisesObject;
   }
+
+  checkSort(obj){
+    for(let i = 0; i < obj.length; i++){
+      console.log(obj[i]['sort']);
+      if(obj[i]['sort'] == "1"){
+        obj[i]['sort'] = "reps";
+      }
+      if(obj[i]['sort'] == "2"){
+        obj[i]['sort'] = "time";
+      }
+    }
+  }
+
 
 // Merge  properties from one object to another
   merge(src, data) {
@@ -232,7 +248,7 @@ ionViewWillEnter() {
  startTimer(){
    this.theTimer = setInterval( () => this.timer() , 1000);
  }
-// The counting of secound minits and houres
+// The counting of secound minutes and houres
  timer(){
 
     this.sec++;
@@ -285,10 +301,10 @@ ionViewWillEnter() {
   nextExer(i){
     if(this.trainingHasStarted == false){
       this.currentExercise = this.exercises[i];
-      
-      
     }
   }
+
+
 
 
 done(){
@@ -310,7 +326,8 @@ done(){
     confirm.present();
 }
 
-
+// Next excersice, must schek if it's the last excersice
+// Use to go on in program
 next(){
 
     this.hideNext();
@@ -328,6 +345,8 @@ next(){
 
       if(this.nr == this.exercises.length - 1 ){
         setTimeout( () => this.showDone() , this.time);
+        // Can't pause or stop when training is done
+        this.hideInTraining();
       }
       
     }
@@ -335,6 +354,10 @@ next(){
     
 
   }
+
+  // Show or hide buttons (FAB)
+  // May come a different way
+  // TODO: sheck for updates
   showDone(){
     let done = document.querySelector(".done");
     done["style"].display = "flex";
@@ -346,6 +369,22 @@ next(){
   hideNext(){
     let nextEx = document.querySelector(".next");
     nextEx["style"].display = "none";
+  }
+  hideInTraining(){
+    let inTraining = document.querySelector(".inTraining");
+    inTraining["style"].display = "none";
+  }
+  showInTraining(){
+    let inTraining = document.querySelector(".inTraining");
+    inTraining["style"].display = "flex";
+  }
+  hideStartTraining(){
+    let start = document.querySelector(".start");
+    start["style"].display = "none";
+  }
+  showStartTraining(){
+    let start = document.querySelector(".start");
+    start["style"].display = "flex";
   }
 
 

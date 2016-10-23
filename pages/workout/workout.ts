@@ -10,6 +10,7 @@ import {TrainingPage} from '../training/training';
 export class WorkoutPage {
 
  public work;
+ timeEx: number = 2;
 
   constructor(private navCtrl: NavController, params:NavParams,request: Request, global: Global,
               public loadingCtrl: LoadingController) {
@@ -35,12 +36,13 @@ let loading = this.loadingCtrl.create({
 
   setTimeout(() => {
     this.navCtrl.push(TrainingPage,{
-         Workout: this.work
+         Workout: this.work,
+         TimeBetweenExcercise: this.timeEx
     });;
   }, 500);
 
   setTimeout(() => {
-    loading.dismiss();
+    loading.dismiss(); 
   }, 1000);
 
 

@@ -25,7 +25,7 @@ export class WorkoutProfilePage {
 
   showWorkoutWeek(){
 
-    this.request.getWorkoutWeek("791f5e43-af95-4a50-bb3a-e4be84b008ad").subscribe(
+    this.request.getWorkoutWeek("e7667c6e-1bbd-4c1e-a1ad-b04c7ff776b1").subscribe(
             data => this.setWrkWeek(data)
         );
 
