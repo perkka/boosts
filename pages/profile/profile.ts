@@ -32,7 +32,7 @@ onPageScroll() {
  
 
   ngAfterViewInit() {
-        this.content.addScrollListener(this.onPageScroll);
+       // this.content.addScrollListener(this.onPageScroll);
     }
 
   // Get User from Server

@@ -64,12 +64,21 @@ export class WorkoutProfilePage {
 
   showWorkoutWeek(){
 
-    this.request.getWorkoutWeek("e7667c6e-1bbd-4c1e-a1ad-b04c7ff776b1").subscribe(
+    return this.request.getWorkoutWeek("e7667c6e-1bbd-4c1e-a1ad-b04c7ff776b1").subscribe(
             data => this.setWrkWeek(data)
     );
 
 
 
+  }
+
+  doRefresh(refresh){
+
+    this.showWorkoutWeek()
+
+    refresh.complete()
+
+  
   }
 
 
@@ -91,6 +100,7 @@ export class WorkoutProfilePage {
   console.log(testArray);
   this.wrkWeek = testArray;
   
+
   }
 
 
