@@ -6,6 +6,8 @@ import {Injectable} from '@angular/core';
 export class Global {
 
     public pickedCoaches:any = null;
+    public userData:any = null;
+
 
     constructor(){
 

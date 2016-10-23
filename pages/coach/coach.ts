@@ -8,14 +8,14 @@ import {Request} from '../../services/request';
 export class CoachPage {
 
 
-  name:string;
-  description:string;
-  workouts = null;
-  coachId = null;
+  public name:string;
+  public description:string;
+  public workouts = null;
+  public coachId = null;
 
-  added = false;
+  public added = false;
 
-  constructor(private navCtrl: NavController, params:NavParams,private request: Request) {
+  constructor(private navCtrl: NavController, params:NavParams, private request: Request) {
 
    let coachData = params.get("coachData")[0];
    this.coachId = coachData.id;
@@ -46,7 +46,10 @@ export class CoachPage {
 
   uncheck() {
     var element = <HTMLInputElement> document.getElementById("myCheck");
-    element.checked = false;
+
+    this.request.unFollowCoach(this.coachId).subscribe(
+            data => element.checked = data
+        );  
   }
 
   

@@ -12,8 +12,6 @@ export class ProfilePage {
 
 
   public position: any;
-  
-
   private Request : Request;
   AllUsers = null;
   Coaches:any;
@@ -39,26 +37,31 @@ onPageScroll() {
 
   // Get User from Server
   getUser(){
-    
-      this.Request.getUsers("42c39126-8c33-42b4-9cb5-3ab1ce336dd7").subscribe(
+
+    if(this.global.userData == null){
+        this.Request.getUsers("42c39126-8c33-42b4-9cb5-3ab1ce336dd7").subscribe(
             data => this.setData(data) 
         );
+     } else{
+
+        this.setData(this.global.userData) 
+
+
+     }
         
   }
 
   setData(users){
 
+  this.global.userData = users;
+
     let coach = JSON.parse(users[0].Coaches)
-
-    
     if(this.global.pickedCoaches == null){
-
 
           this.Request.getCoach(coach[0].id).subscribe(
             data => this.setCoaches(data)
         );
-    }
-  
+    } else this.setCoaches(this.global.pickedCoaches)
 
     this.AllUsers = users;
   }
@@ -67,7 +70,7 @@ onPageScroll() {
 
         this.global.pickedCoaches = coaches; 
         this.Coaches = coaches;
-        console.log(this.global.pickedCoaches);
+
   }
 
 /*

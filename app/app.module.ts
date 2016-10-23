@@ -18,7 +18,7 @@ import { ToplistPage } from '../pages/toplist/toplist';
 import { WorkoutPage } from '../pages/workout/workout';
 import { ExplorePage } from '../pages/explore/explore';
 import { Facebook } from 'ionic-native';
-
+import {Request} from '../services/request';
 
 import { UserData } from '../providers/userdata';
 import { Storage } from '@ionic/storage';
@@ -48,7 +48,7 @@ import { Storage } from '@ionic/storage';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-     MyApp,
+    MyApp,
     AboutPage,
     HomePage,
     TabsPage,
@@ -64,6 +64,6 @@ import { Storage } from '@ionic/storage';
     WorkoutPage,
     ExplorePage
   ],
-  providers: [UserData, Storage, Facebook]
+  providers: [Request, Storage, Facebook]
 })
 export class AppModule {}

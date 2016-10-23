@@ -11,9 +11,9 @@ export class Request {
  private ExternalIpAdress = "http://2.68.167.57:3000";
 
  // Used At PerkKas Place :)
-
  private LocalIpAdres = "http://192.168.1.2:4000";
 
+ private ipAdress = this.LocalIpAdres;
  
  private http;
  private data;
@@ -24,7 +24,7 @@ export class Request {
     this.http = http;
  }
 
-
+ // Set token to storage
   setToken(){
 
     NativeStorage.getItem('fbtoken')
@@ -35,64 +35,64 @@ export class Request {
 
   }
 
-  // Empty Token
+  // Empty Token 
   destroyToken(){
       this.token = "0";
   }
 
   checkAuth(prop){
 
-       var url = this.LocalIpAdres + '/auth/facebook/token?access_token=' + prop; //+ encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
+       var url = this.ipAdress + '/auth/facebook/token?access_token=' + prop; //+ encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
         return this.http.get(url)
         .map(res => res.json()) 
   }
 
 
    getCategories(){
-         alert(this.token)
-       var url = this.LocalIpAdres + '/categories/all?access_token=' + this.token //+ encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
+
+       var url = this.ipAdress + '/categories/all?access_token=' + this.token //+ encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
         return this.http.get(url)
         .map(res => res.json())
   }
 
    getMedals(){
-       var url = this.LocalIpAdres + '/achievements'; //+ encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
+       var url = this.ipAdress + '/achievements'; //+ encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
         return this.http.get(url)
         .map(res => res.json())
   }
   
   getCoaches(categoryId){ 
-       var url = this.LocalIpAdres + '/categories/' + categoryId; //+ encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
+       var url = this.ipAdress + '/categories/' + categoryId; //+ encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
         return this.http.get(url)
         .map(res => res.json())
   }
 
   getUsers(userId){ 
-       var url = this.LocalIpAdres + '/users/' + userId; //+ encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
+       var url = this.ipAdress + '/users/' + userId; //+ encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
         return this.http.get(url)
         .map(res => res.json())
   }
 
   getWorkouts(workout){
-       var url = this.LocalIpAdres + '/coaches/workouts' + workout; //+ encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
+       var url = this.ipAdress + '/coaches/workouts' + workout; //+ encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
         return this.http.get(url)
         .map(res => res.json())
   }
 
   getCoach(coachId){ 
-       var url = this.LocalIpAdres + '/coaches/' + coachId; //+ encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
+       var url = this.ipAdress + '/coaches/' + coachId; //+ encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
         return this.http.get(url)
         .map(res => res.json())
   }
   
   getWorkoutWeek(coachId){ 
-       var url = this.LocalIpAdres + '/workoutweeks/' + coachId; //+ encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
+       var url = this.ipAdress + '/workoutweeks/' + coachId; //+ encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
         return this.http.get(url)
         .map(res => res.json())
   }
 
   getWrkExercises(exArray){
-    var url = this.LocalIpAdres + '/exercises/'; //+ encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
+    var url = this.ipAdress + '/exercises/'; //+ encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
         
       let body =  exArray;
       let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -103,7 +103,13 @@ export class Request {
   }
 
   followCoach(coachId){
-        var url = this.LocalIpAdres + '/users/' + coachId; //+ encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
+        var url = this.ipAdress + '/users/' + coachId + "/follow" + '?access_token=' + this.token; //+ encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
+        return this.http.get(url)
+        .map(res => res.json())
+  }
+  
+  unFollowCoach(coachId){
+        var url = this.ipAdress + '/users/' + coachId + "/unfollow" + '?access_token=' + this.token; //+ encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
         return this.http.get(url)
         .map(res => res.json())
   }

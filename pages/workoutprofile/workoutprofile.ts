@@ -18,8 +18,47 @@ export class WorkoutProfilePage {
 
   constructor(private navCtrl: NavController, private global:Global , private request:Request) {
 
-    this.pickedCoaches = global.pickedCoaches;
+    this.getUser();
     this.showWorkoutWeek();
+  }
+
+// TODO: User information doesn't need to be here, possible change to use profile info 
+//       from server or load this information direct on start of application
+  getUser(){
+    
+    if(this.global.userData == null){
+        this.request.getUsers("42c39126-8c33-42b4-9cb5-3ab1ce336dd7").subscribe(
+            data => this.setData(data) 
+        );
+     } else{
+
+        this.setData(this.global.userData) 
+
+
+     }
+        
+  }
+
+  setData(users){
+
+   this.global.userData = users;
+
+    let coach = JSON.parse(users[0].Coaches)
+    if(this.global.pickedCoaches == null){
+
+          this.request.getCoach(coach[0].id).subscribe(
+            data => this.setCoaches(data)
+        );
+    } else this.setCoaches(this.global.pickedCoaches)
+
+    
+  }
+
+  setCoaches(coaches){
+
+        this.global.pickedCoaches = coaches; 
+        this.pickedCoaches = coaches;
+
   }
 
 
@@ -27,7 +66,7 @@ export class WorkoutProfilePage {
 
     this.request.getWorkoutWeek("e7667c6e-1bbd-4c1e-a1ad-b04c7ff776b1").subscribe(
             data => this.setWrkWeek(data)
-        );
+    );
 
 
 
