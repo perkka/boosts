@@ -14,7 +14,8 @@ import {HomePage} from '../home/home';
 })
 export class TrainingPage {
 
-  public time: any = 2000;
+  public time: any = 4;
+  public doneTime: any = 2000;
   public trainingHasStarted: boolean = false;
   public trainingHasPaused: boolean = false;
   public nr: any = 0;
@@ -25,7 +26,19 @@ export class TrainingPage {
   public zero1: string = "0";
   public zero2: string = "0";
   public zero3: string = "0";
-  public tbe: number;
+
+  private total: number = 0;
+
+  // Time between excercises
+  private tbe: number;
+  private startUpTime: number;
+  public checkNextBtn: any;
+  public start: true;
+
+  // Countdown
+  public theTimer2: any;
+  public displaySeconds: number;
+  public delay: number;
 
 
   public exercises = [];
@@ -35,7 +48,7 @@ export class TrainingPage {
               global: Global, public alertCtrl: AlertController, private viewCtrl: ViewController,
               private toastCtrl: ToastController) {
 
-      
+      this.startUpTime = params.get("StartUpTime")
       this.tbe = params.get("TimeBetweenExcercise")
       let workout = params.get("Workout")
 
@@ -63,10 +76,6 @@ export class TrainingPage {
   }
  
 
-
-
-
-
  
   startTraining(){
 
@@ -78,13 +87,12 @@ export class TrainingPage {
     // hide and show fab buttons
     this.showInTraining();
     this.hideStartTraining();
-
-    
-    setTimeout( () => this.showNext() , this.time);
-    
+    this.showNext();
+    this.checkNextBtn = true;
     
     // start timer
     this.startTimer();
+    this.startCountdown(this.startUpTime);
     
     // start all excersises
     this.nr = 0;
@@ -109,6 +117,7 @@ export class TrainingPage {
     // Fab buttons change state
     this.showStartTraining();
     this.hideInTraining();
+    this.hideNext();
 
     this.trainingHasPaused = true;
 
@@ -243,15 +252,36 @@ ionViewWillEnter() {
 
   }
 
+//.----------------TIMERS--------------
 
+  startCountdown(timeIntervall: number){
+    this.displaySeconds = timeIntervall;
+    this.delay = timeIntervall;
+    this.total = 0;
+  }
+
+  countdown(){
+      this.displaySeconds--;
+  }
 // Starting the timer
  startTimer(){
-   this.theTimer = setInterval( () => this.timer() , 1000);
+   this.theTimer = setInterval( () => 
+   this.timer(), 1000);
  }
 // The counting of secound minutes and houres
  timer(){
 
+    this.total++;
     this.sec++;
+
+    if(this.delay >= this.total){
+     this.countdown();
+     this.checkNextBtn = true;
+    }
+    else{
+      this.start = true;
+      this.checkNextBtn = false;
+    }
 
     if(this.sec == 10){
       this.zero1 = "";
@@ -261,7 +291,7 @@ ionViewWillEnter() {
       this.min++;
       this.sec = 0;
       this.zero1 = "0";
-    }
+    } 
 
     if(this.min == 10){
       this.zero2 = "";
@@ -330,21 +360,24 @@ done(){
 // Use to go on in program
 next(){
 
-    this.hideNext();
+    //this.hideNext();
+    this.checkNextBtn = true; // CHANGE TIME HERE
 
     if(this.trainingHasStarted == true){
 
       this.nr++;
       if(this.nr < this.exercises.length){
         this.nextExerInTraining(this.nr);
+        // CONSOL
         console.log(this.currentExercise);
         if(this.nr <= this.exercises.length - 2 ){
-          setTimeout( () => this.showNext() , this.time);
+          this.startCountdown(this.tbe); // CHANGE TIME HERE
         }
       }
 
       if(this.nr == this.exercises.length - 1 ){
-        setTimeout( () => this.showDone() , this.time);
+        setTimeout( () => this.showDone() , this.doneTime);
+        this.hideNext();
         // Can't pause or stop when training is done
         this.hideInTraining();
       }

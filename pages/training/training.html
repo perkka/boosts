@@ -14,10 +14,12 @@
 <!-- Here is the current ex -->
 <!-- ///////////////////////////////// -->
   <div class="exSquare" *ngIf="isTrainingStarted()">
-         <ion-card>
+         <ion-card> 
                   <ion-grid>
-                     <ion-row >
-                          Start in
+                     <ion-row [class.hej]="start">
+                       <ion-col>
+                           Start in {{displaySeconds}}
+                       </ion-col>
                      </ion-row>
                     <ion-row>
                        <ion-col width-50>
@@ -78,7 +80,7 @@
 </ion-fab>
 <!-- -->
 <ion-fab class="next" bottom center>
-  <button ion-fab color="primary" (click)="next()"><ion-icon name="arrow-round-forward"></ion-icon></button>
+  <button class="btn" [disabled]="checkNextBtn" (click)="next()" ion-fab color="primary"><ion-icon name="arrow-round-forward"></ion-icon></button>
 </ion-fab>
 
 <ion-fab class="done" bottom center>

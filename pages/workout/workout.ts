@@ -11,6 +11,7 @@ export class WorkoutPage {
 
  public work;
  timeEx: number = 2;
+ startUpTime: number = 3;
 
   constructor(private navCtrl: NavController, params:NavParams,request: Request, global: Global,
               public loadingCtrl: LoadingController) {
@@ -37,7 +38,8 @@ let loading = this.loadingCtrl.create({
   setTimeout(() => {
     this.navCtrl.push(TrainingPage,{
          Workout: this.work,
-         TimeBetweenExcercise: this.timeEx
+         TimeBetweenExcercise: this.timeEx,
+         StartUpTime: this.startUpTime
     });;
   }, 500);
 

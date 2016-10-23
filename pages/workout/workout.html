@@ -33,7 +33,14 @@
   </ion-list-header>
     <ion-item>
         <ion-label>Seconds between excersices</ion-label>
-        <ion-range min="0" max="10" step="1" snaps="true" color="secondary" pin="true" [(ngModel)]="timeEx">
+        <ion-range min="2" max="10" step="1" snaps="true" pin="true" [(ngModel)]="timeEx">
+          <ion-icon small range-left name="timer"></ion-icon>
+          <ion-icon range-right name="timer"></ion-icon>
+        </ion-range>
+    </ion-item>
+    <ion-item>
+        <ion-label>Startup time</ion-label> 
+        <ion-range min="3" max="30" snaps="true" pin="true" [(ngModel)]="startUpTime">
           <ion-icon small range-left name="timer"></ion-icon>
           <ion-icon range-right name="timer"></ion-icon>
         </ion-range>
