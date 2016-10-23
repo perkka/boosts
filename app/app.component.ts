@@ -21,9 +21,7 @@ export class MyApp {
   constructor(private platform: Platform,  public userData: UserData) {
 
       // decide which menu items should be hidden by current login status stored in local storage
-    this.userData.hasLoggedIn().then((hasLoggedIn) => {
-      console.log(hasLoggedIn);
-    });
+    
     this.loginPage = LoginPage;
     this.tabsPage = TabsPage;
 

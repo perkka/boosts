@@ -18,17 +18,39 @@ export class Request {
  private http;
  private data;
  private token;
+ private tokenString = 'access_token='; 
 
   constructor(http: Http) {
     this.http = http;
+ }
 
-    
-    
+
+  setToken(){
+
+    NativeStorage.getItem('fbtoken')
+      .then(
+      data => this.token = data.property,
+      error => console.error(error)
+      );
+
   }
 
-   getCategories(prop){
-         alert(prop);
-       var url = this.LocalIpAdres + '/categories/all?access_token=' + prop; //+ encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
+  // Empty Token
+  destroyToken(){
+      this.token = "0";
+  }
+
+  checkAuth(prop){
+
+       var url = this.LocalIpAdres + '/auth/facebook/token?access_token=' + prop; //+ encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
+        return this.http.get(url)
+        .map(res => res.json()) 
+  }
+
+
+   getCategories(){
+         alert(this.token)
+       var url = this.LocalIpAdres + '/categories/all?access_token=' + this.token //+ encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
         return this.http.get(url)
         .map(res => res.json())
   }
@@ -77,6 +99,12 @@ export class Request {
       let options = new RequestOptions({ headers: headers });
 
         return this.http.post(url, body , options)
+        .map(res => res.json())
+  }
+
+  followCoach(coachId){
+        var url = this.LocalIpAdres + '/users/' + coachId; //+ encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
+        return this.http.get(url)
         .map(res => res.json())
   }
 

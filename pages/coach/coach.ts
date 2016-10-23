@@ -7,34 +7,41 @@ import {Request} from '../../services/request';
 })
 export class CoachPage {
 
-  private Request : Request;
+
   name:string;
   description:string;
   workouts = null;
+  coachId = null;
 
-  constructor(private navCtrl: NavController, params:NavParams,request: Request) {
+  added = false;
+
+  constructor(private navCtrl: NavController, params:NavParams,private request: Request) {
 
    let coachData = params.get("coachData")[0];
-   console.log(coachData);
+   this.coachId = coachData.id;
    this.name = coachData.Name;
    this.description = coachData.Description;
    //this.profileImg = coachData.profileImg;
    //this.coverImg = coachData.coverImg;
-   this.Request = request;
+
 
    this.getWorkouts(coachData.id);
 
   }
 
   getWorkouts(id){
-      this.Request.getWorkouts(id).subscribe(
+      this.request.getWorkouts(id).subscribe(
             data => this.workouts = data
         );   
   }
 
   check() {
     var element = <HTMLInputElement> document.getElementById("myCheck");
-    element.checked = true;
+
+    
+    this.request.followCoach(this.coachId).subscribe(
+            data => element.checked = data
+        );  
   }
 
   uncheck() {

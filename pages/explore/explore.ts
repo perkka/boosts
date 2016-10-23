@@ -26,24 +26,11 @@ export class ExplorePage {
 
   // Get Categories from Server
    getCategories(){
-    
-    NativeStorage.getItem('myitem')
-      .then(
-      data => this.send(data.property),
-      error => console.error(error)
-      );
-
-      
-
-      
-  }
-
-  send(prop){
-
-        this.Request.getCategories(prop).subscribe(
+     this.Request.getCategories().subscribe(
             data => this.AllCategories = data
         );
-  }
+
+   }
 
   // Navigate to Coach
    _coach(coachData){
