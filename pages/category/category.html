@@ -10,11 +10,13 @@
 
 
 
-<ion-content >
+<ion-content class="category">
 
-       <ion-item  *ngFor="let coach of coaches" item-width="50%" (click)="_coach([coach])">
-          <span item-left><img class="coach_pic" src="{{coach.Img}}"></span>
-          <span item-left><div  class="card-title">{{coach.Name}}</div></span>
-      </ion-item>
+       <ion-card  *ngFor="let coach of coaches" item-width="50%" (click)="_coach([coach])">
+         <ion-item>
+            <span item-left><img class="coach" src="{{coach.Img}}"></span>
+            <span item-centre><div  class="card-title">{{coach.Name}}</div></span>
+         </ion-item>
+      </ion-card>
 
 </ion-content>

@@ -12,6 +12,7 @@ export class CoachPage {
   public description:string;
   public workouts = null;
   public coachId = null;
+  public img = null;
 
   public added = false;
 
@@ -20,7 +21,9 @@ export class CoachPage {
    let coachData = params.get("coachData")[0];
    this.coachId = coachData.id;
    this.name = coachData.Name;
-   this.description = coachData.Description;
+   //this.description = coachData.Description;
+   this.img = coachData.Img;
+   this.description = coachData.Username;
    //this.profileImg = coachData.profileImg;
    //this.coverImg = coachData.coverImg;
 

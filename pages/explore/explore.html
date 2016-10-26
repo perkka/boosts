@@ -21,19 +21,19 @@
         <ion-row>
             <ion-col width-50>
                 <ion-card style="height:125px">
-                     <img src='img/health.png'>
+                     <img src='img/swing.jpeg'>
                       <div  class="card-title"></div>
                   </ion-card>
             </ion-col> 
             <ion-col width-50>
                <ion-card style="height:125px">
-                     <img src='img/muscle.png'>
+                     <img src='img/brain.jpg'>
                      <div  class="card-title"></div>
                   </ion-card>
             </ion-col> 
             <ion-col width-50>
                <ion-card style="height:125px">
-                     <img src='img/weigth.png'>
+                     <img src='img/tomte.jpg'>
                      <div  class="card-title"></div>
                   </ion-card>
             </ion-col> 
@@ -42,7 +42,7 @@
 
 <!-- TOPLIST & POPULR & NEW COACHES -->
 
-    <ion-list no-lines>
+    <ion-list no-lines class="list">
 
     <!--
   <ion-item (click)="_toplist()">
@@ -50,10 +50,16 @@
   </ion-item>
   -->
   <ion-item (click)="_popular()">
-    <ion-icon name="ribbon" item-left small> Populära just nu</ion-icon>
+
+    <span item-left><ion-icon name="ribbon" item-left small> Populära just nu</ion-icon></span>
+    <span item-right><ion-icon name="arrow-forward" item-left small></ion-icon></span>
+
   </ion-item>
   <ion-item (click)="_newcoaches()">
-    <ion-icon name="calendar" item-left small> Nya tränare</ion-icon>
+      
+    <span item-left><ion-icon name="calendar" item-left small> Nya tränare</ion-icon></span>
+    <span item-right><ion-icon name="arrow-forward" item-left small></ion-icon></span>
+
   </ion-item>
 </ion-list>
 
@@ -69,9 +75,9 @@
 
 
                 <ion-col *ngIf="i % 2 === 0">
-                    <ion-card class="backgound-for-categorys1">
-                        <h2 class="card-title">{{category.name}}</h2>
-                        <img src='img/2.jpg'>
+                    <ion-card class="backgound">
+                        <h2 class="card-title">{{category.Name}}</h2>
+                        <img src='img/{{category.id}}.jpg'>
                     </ion-card>
                 </ion-col>
 
@@ -85,9 +91,9 @@
 
 
                 <ion-col *ngIf="i % 2 === 1">
-                    <ion-card class="backgound-for-categorys2">
-                        <div  class="card-title">{{category.name}}</div>  
-                        <img src='img/4.jpg'>    
+                    <ion-card class="backgound">
+                        <h2  class="card-title">{{category.Name}}</h2>  
+                        <img src='img/{{category.id}}.jpg'>    
                     </ion-card>
                 </ion-col>
 

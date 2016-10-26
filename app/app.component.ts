@@ -22,7 +22,7 @@ export class MyApp {
 
       // decide which menu items should be hidden by current login status stored in local storage
     
-    this.loginPage = LoginPage;
+    this.loginPage = TabsPage;
     this.tabsPage = TabsPage;
 
     platform.ready().then(() => {
