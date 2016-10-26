@@ -15,7 +15,7 @@
        <ion-card  *ngFor="let coach of coaches" item-width="50%" (click)="_coach([coach])">
          <ion-item>
             <span item-left><img class="coach" src="{{coach.Img}}"></span>
-            <span item-centre><div  class="card-title">{{coach.Name}}</div></span>
+            <span item-centre><h5 class="card-title">{{coach.Name}}</h5></span>
          </ion-item>
       </ion-card>
 
