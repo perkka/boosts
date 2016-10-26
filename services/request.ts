@@ -68,7 +68,7 @@ export class Request {
   }
 
   getUsers(userId){ 
-       var url = this.ipAdress + '/users/' + userId; //+ encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
+       var url = this.ipAdress + '/users/' + userId + '?access_token=' + this.token;//+ encodeURI(movieName) + '&api_key=5fbddf6b517048e25bc3ac1bbeafb919';
         return this.http.get(url)
         .map(res => res.json())
   }

@@ -27,7 +27,7 @@ export class WorkoutProfilePage {
   getUser(){
     
     if(this.global.userData == null){
-        this.request.getUsers("42c39126-8c33-42b4-9cb5-3ab1ce336dd7").subscribe(
+        this.request.getUsers("999").subscribe(
             data => this.setData(data) 
         );
      } else{
@@ -40,13 +40,13 @@ export class WorkoutProfilePage {
   }
 
   setData(users){
-
+    console.log(users);
    this.global.userData = users;
 
-    let coach = JSON.parse(users[0].Coaches)
+    let coach = users[0].Coaches;
     if(this.global.pickedCoaches == null){
 
-          this.request.getCoach(coach[0].id).subscribe(
+          this.request.getCoach(coach.id).subscribe(
             data => this.setCoaches(data)
         );
     } else this.setCoaches(this.global.pickedCoaches)
@@ -59,7 +59,7 @@ export class WorkoutProfilePage {
         this.global.pickedCoaches = coaches; 
         this.pickedCoaches = coaches;
 
-        this.showWorkoutWeek(this.pickedCoaches.id);
+        this.showWorkoutWeek(this.pickedCoaches[0].id);
 
   }
 
@@ -76,7 +76,7 @@ export class WorkoutProfilePage {
 
   doRefresh(refresh){
 
-    this.showWorkoutWeek(this.pickedCoaches.id)
+    this.showWorkoutWeek(this.pickedCoaches[0].id)
 
     refresh.complete()
 

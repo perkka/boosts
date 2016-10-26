@@ -55,10 +55,10 @@ onPageScroll() {
 
   this.global.userData = users;
 
-    let coach = JSON.parse(users[0].Coaches)
+    let coach = users[0].Coaches
     if(this.global.pickedCoaches == null){
 
-          this.Request.getCoach(coach[0].id).subscribe(
+          this.Request.getCoach(coach.id).subscribe(
             data => this.setCoaches(data)
         );
     } else this.setCoaches(this.global.pickedCoaches)
