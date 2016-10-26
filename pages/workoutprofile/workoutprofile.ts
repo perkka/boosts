@@ -19,7 +19,7 @@ export class WorkoutProfilePage {
   constructor(private navCtrl: NavController, private global:Global , private request:Request) {
 
     this.getUser();
-    this.showWorkoutWeek();
+    
   }
 
 // TODO: User information doesn't need to be here, possible change to use profile info 
@@ -59,12 +59,14 @@ export class WorkoutProfilePage {
         this.global.pickedCoaches = coaches; 
         this.pickedCoaches = coaches;
 
+        this.showWorkoutWeek(this.pickedCoaches.id);
+
   }
 
 
-  showWorkoutWeek(){
+  showWorkoutWeek(id){
 
-    return this.request.getWorkoutWeek("e7667c6e-1bbd-4c1e-a1ad-b04c7ff776b1").subscribe(
+    return this.request.getWorkoutWeek(id).subscribe(
             data => this.setWrkWeek(data)
     );
 
@@ -74,7 +76,7 @@ export class WorkoutProfilePage {
 
   doRefresh(refresh){
 
-    this.showWorkoutWeek()
+    this.showWorkoutWeek(this.pickedCoaches.id)
 
     refresh.complete()
 

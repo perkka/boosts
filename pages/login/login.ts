@@ -11,7 +11,7 @@ import { NativeStorage } from 'ionic-native';
     templateUrl: 'login.html'
 })
 export class LoginPage {
-  constructor(public navCtrl: NavController, private platform : Platform, public fb: FacebookService) {
+  constructor(public navCtrl: NavController, private platform : Platform) {
 
 
  platform.ready().then((readySource) => {
