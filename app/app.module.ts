@@ -19,6 +19,7 @@ import { WorkoutPage } from '../pages/workout/workout';
 import { ExplorePage } from '../pages/explore/explore';
 import { Facebook } from 'ionic-native';
 import {Request} from '../services/request';
+//import {FacebookService, FacebookLoginResponse, FacebookInitParams} from 'ng2-facebook-sdk/dist';
 
 import { UserData } from '../providers/userdata';
 import { Storage } from '@ionic/storage';
