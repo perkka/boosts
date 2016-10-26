@@ -16,6 +16,8 @@ export class CoachPage {
 
   public added = false;
 
+
+
   constructor(private navCtrl: NavController, params:NavParams, private request: Request) {
 
    let coachData = params.get("coachData")[0];
@@ -26,6 +28,8 @@ export class CoachPage {
    this.description = coachData.Username;
    //this.profileImg = coachData.profileImg;
    //this.coverImg = coachData.coverImg;
+
+
 
 
    this.getWorkouts(coachData.id);
@@ -53,6 +57,10 @@ export class CoachPage {
     this.request.unFollowCoach(this.coachId).subscribe(
             data => element.checked = data
         );  
+  }
+
+  test(){
+    
   }
 
   
