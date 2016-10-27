@@ -71,7 +71,7 @@
 
         <ion-row> 
         <ion-col>
-            <ion-row *ngFor="let category of AllCategories; let i=index" (click)="_category([category.name], [category.id])">
+            <ion-row *ngFor="let category of AllCategories; let i=index" (tap)="_category([category.name], [category.id])">
 
 
                 <ion-col *ngIf="i % 2 === 0">
@@ -87,7 +87,7 @@
         <ion-col>
 
 
-            <ion-row *ngFor="let category of AllCategories; let i=index" (click)="_category([category.name], [category.id])">
+            <ion-row *ngFor="let category of AllCategories; let i=index" (tap)="_category([category.name], [category.id])">
 
 
                 <ion-col *ngIf="i % 2 === 1">

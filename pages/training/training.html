@@ -47,7 +47,7 @@
 <!-- Here is the EXCERSICE -->
 <!-- ///////////////////////////////// -->
 <ion-list>
-         <ion-item class="orginal" *ngFor="let ex of exercises; let i=index" (click)="nextExer(i)">
+         <ion-item class="orginal" *ngFor="let ex of exercises; let i=index" (tap)="nextExer(i)">
                
                 <ion-label>Excercise: {{ex.Name}}</ion-label>
                 <ion-label>{{ex.reps}} {{ex.sort}}</ion-label>
@@ -59,7 +59,7 @@
 <!-- Here is the FAB Buttons -->
 <!-- ///////////////////////////////// -->
 <ion-fab class="start" bottom center>
-   <button ion-fab (click)="startTraining()"><ion-icon name="play"></ion-icon></button>
+   <button ion-fab (tap)="startTraining()"><ion-icon name="play"></ion-icon></button>
  </ion-fab>
 
 
@@ -72,19 +72,19 @@
    -->
   </ion-fab-list>
   <ion-fab-list side="left">
- <button color="danger" ion-fab (click)="pauseTraining(fab)"><ion-icon name="pause"></ion-icon></button>
-   <button color="danger" ion-fab (click)="stopTraining()"><ion-icon name="square"></ion-icon></button>
+ <button color="danger" ion-fab (tap)="pauseTraining(fab)"><ion-icon name="pause"></ion-icon></button>
+   <button color="danger" ion-fab (tap)="stopTraining()"><ion-icon name="square"></ion-icon></button>
     
   </ion-fab-list>
 
 </ion-fab>
 <!-- -->
 <ion-fab class="next" bottom center>
-  <button class="btn" [disabled]="checkNextBtn" (click)="next()" ion-fab color="primary"><ion-icon name="arrow-round-forward"></ion-icon></button>
+  <button class="btn" [disabled]="checkNextBtn" (tap)="next()" ion-fab color="primary"><ion-icon name="arrow-round-forward"></ion-icon></button>
 </ion-fab>
 
 <ion-fab class="done" bottom center>
-  <button ion-fab color="primary" (click)="done()">DONE</button>
+  <button ion-fab color="primary" (tap)="done()">DONE</button>
 </ion-fab>
 <!-- ///////////////////////////////// -->
 
