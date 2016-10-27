@@ -39,7 +39,7 @@
                   </ion-grid>
           </ion-card> 
 
-      <video controls="controls" loop width="380" preload="metadata" autoplay="autoplay" webkit-playsinline="webkit-playsinline" class="videoPlayer"><source src="http://192.168.1.2:4000/video/stream?filename={{currentExercise.Video}}&format={{currentExercise.VideoFormat}}" type="{{currentExercise.VideoFormat}}"/></video>
+      <video controls="controls" loop height="200" width="380" preload="metadata" autoplay="autoplay" webkit-playsinline="webkit-playsinline" class="videoPlayer"><source src="http://192.168.1.2:4000/video/stream?filename={{currentExercise.Video}}&format={{currentExercise.VideoFormat}}" type="{{currentExercise.VideoFormat}}"/></video>
   </div>
   <!-- ///////////////////////////////// -->
 
@@ -68,11 +68,11 @@
 
   <ion-fab-list side="top">
 
-    <button color="danger" ion-fab (click)="pauseTraining(fab)"><ion-icon name="pause"></ion-icon></button>
-
+   <!-- <button color="danger" ion-fab (click)="pauseTraining(fab)"><ion-icon name="pause"></ion-icon></button>
+   -->
   </ion-fab-list>
   <ion-fab-list side="left">
-
+ <button color="danger" ion-fab (click)="pauseTraining(fab)"><ion-icon name="pause"></ion-icon></button>
    <button color="danger" ion-fab (click)="stopTraining()"><ion-icon name="square"></ion-icon></button>
     
   </ion-fab-list>

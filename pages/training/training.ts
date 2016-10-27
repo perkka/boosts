@@ -204,7 +204,7 @@ ionViewWillEnter() {
         obj[i]['sort'] = "reps";
       }
       if(obj[i]['sort'] == "2"){
-        obj[i]['sort'] = "time";
+        obj[i]['sort'] = "seconds";
       }
     }
   }
@@ -329,12 +329,29 @@ ionViewWillEnter() {
   // For visability
   // Next excercise in program, can choose nr i, work only before you start training
   nextExer(i){
-    if(this.trainingHasStarted == false){
+    if(this.trainingHasStarted == false || this.trainingHasPaused == true){
       this.currentExercise = this.exercises[i];
+      this.popup();
+      //this.currentExercise = this.exercises[i];
     }
   }
 
+popup(){
+  let confirm = this.alertCtrl.create({
+      title: this.currentExercise.Name + " " + this.currentExercise.reps + " " + this.currentExercise.sort,
+      message: this.currentExercise.Description,
+      cssClass: 'myAlert',
+      buttons: [
+        {
+          text: 'Close',
+          handler: () => {
 
+          }
+        }
+      ]
+    });
+    confirm.present();
+}
 
 
 done(){
