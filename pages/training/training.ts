@@ -42,7 +42,7 @@ export class TrainingPage {
 
 
   public exercises = [];
-  public currentExercise = {Name: "Excersise", Description: "Description", reps: "Reps", sort: "undefined"};
+  public currentExercise = {Name: "Excersise", Description: "Description", reps: "Reps", sort: "undefined", Video: "undefined", VideoFormat: "undefined"};
 
   constructor(private navCtrl: NavController, params:NavParams, private request: Request, 
               global: Global, public alertCtrl: AlertController, private viewCtrl: ViewController,

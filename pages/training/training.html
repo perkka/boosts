@@ -39,7 +39,7 @@
                   </ion-grid>
           </ion-card> 
 
-      <video controls="controls" loop width="380" preload="metadata" autoplay="autoplay" webkit-playsinline="webkit-playsinline" class="videoPlayer"><source src="http://192.168.1.2:4000/video/stream?filename=uploads/exercise1/b0f88f8d8abe868c1557f239792e5162&format=video/vnd.dlna.mpeg-tts" type="video/vdn.dlna.mpeg-tts"/></video>
+      <video controls="controls" loop width="380" preload="metadata" autoplay="autoplay" webkit-playsinline="webkit-playsinline" class="videoPlayer"><source src="http://192.168.1.2:4000/video/stream?filename={{currentExercise.Video}}&format={{currentExercise.VideoFormat}}" type="{{currentExercise.VideoFormat}}"/></video>
   </div>
   <!-- ///////////////////////////////// -->
 
