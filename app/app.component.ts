@@ -9,7 +9,7 @@ import {TabsPage} from '../pages/tabs/tabs';
 import { UserData } from '../providers/userdata';
 
 @Component({
-  template: '<ion-nav [root]="loginPage"></ion-nav>',
+  template: '<ion-nav [root]="tabsPage"></ion-nav>',
   providers: [Request, Global, UserData]
 })
 export class MyApp {

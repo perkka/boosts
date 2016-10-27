@@ -25,8 +25,8 @@
 
 
   <div class="workouts">
-    <button (click)="check()">Check Checkbox</button>
-    <button (click)="uncheck()">Uncheck Checkbox</button>
+    <button ion-button [class.follow]="follow" (click)="check()">Follow</button>
+    <button ion-button [class.follow]="!follow" (click)="uncheck()">UnFollow</button>
   </div>
 
 <!--
@@ -35,9 +35,9 @@
       </ion-card>
 -->    
 
-  <input type="checkbox" class="follow-button-pos" id="myCheck" 
+  <!--<input type="checkbox" class="follow-button-pos" id="myCheck" 
         checked="true" />
-
+-->  
   
 
 
